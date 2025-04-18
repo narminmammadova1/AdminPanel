@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1333,
+      "userName": "user1",
+      "firstName": "John",
+      "lastName": "Doe",
+      "balance": 100.00,
+      "audioAccess": "2025-05-01",
+      "videoAccess": "2025-05-01",
+      "imgUrl": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+      "id": 3332,
+      "userName": "user2",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "balance": 80.50,
+      "audioAccess": "2025-06-01",
+      "videoAccess": "2025-06-01",
+      "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+    }
+  ]
+  
