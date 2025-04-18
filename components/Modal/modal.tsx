@@ -1,15 +1,15 @@
 
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Button from "../Button/Button";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Image from "next/image";
 
 type ModalProps = {
   setIsOpen: (open: boolean) => void;
   title: string;
-  onSave?: (user: any) => void; 
 };
 
 const validationSchema = Yup.object().shape({
@@ -21,17 +21,14 @@ const validationSchema = Yup.object().shape({
   videoAccess: Yup.string().required("Video access is required"),
 });
 
-const Modal = ({ setIsOpen, title, onSave }: ModalProps) => {
+const Modal = ({ setIsOpen, title }: ModalProps) => {
   const [imgUrl,setImgUrl] = useState<string | null>(null);
 
   const handleCloseModal = () => {
-    setIsOpen && setIsOpen(false);
+    setIsOpen(false);
   };
 
-  useEffect(() => {
-    const localEdit = localStorage.getItem("isEdit");
-  }, []);
-
+  
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -71,6 +68,8 @@ try {
   const parsed = JSON.parse(raw || "[]");
   existingUsers = Array.isArray(parsed) ? parsed : [];
 } catch (err) {
+  console.log(err,"err");
+  
   existingUsers = [];
 }
             console.log("Parsed existing users:", existingUsers);
@@ -88,7 +87,9 @@ try {
             <div className="flex justify-center">
               <div className="relative w-20 h-20 rounded-full">
                 {imgUrl ? (
-                  <img
+                  <Image
+                  width={200}
+                  height={200}
                     src={imgUrl}
                     alt="Avatar Preview"
                     className="w-20 h-20 object-cover rounded-full border mb-2"

@@ -4,8 +4,9 @@ import React from 'react'
 
 type ButtonProps={
     title?:string;
-    onClick?:any;
-    type?:any
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    // type?:string |undefined
+   type?: "submit" | "reset" | "button" | undefined
 }
 
 

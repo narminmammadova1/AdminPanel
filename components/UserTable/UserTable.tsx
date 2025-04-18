@@ -6,9 +6,22 @@ import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import useModal from "@/hooks/useModal";
 import Modal from "../Modal/modal";
+import Image from "next/image";
+
+type UserProps = {
+  id: number;
+  userName: string;
+  firstName: string;
+  lastName: string;
+  balance: number;
+  audioAccess: string;
+  videoAccess: string;
+  imgUrl?: string  
+};
+
 
 const UserTable = () => {
-  const [users, setUsers] = useState<any[]>([]);
+  const [users, setUsers] = useState<UserProps[]>([]);
   const { isOpen, setIsOpen } = useModal();
   const [isEdit, setIsEdit] = useState(false);
 
@@ -16,14 +29,10 @@ const UserTable = () => {
     setIsOpen(true);
     setIsEdit(true);
     localStorage.setItem("isEdit", "true");
+    console.log("isedit",isEdit);
+    
   };
 
-  const handleSaveUser = (newUser: any) => {
-    const updatedUsers = [...users, newUser];
-    setUsers(updatedUsers);
-    localStorage.setItem("usersData", JSON.stringify(updatedUsers));
-    alert("dddd")
-  };
 
 
   const handleDelete = (id: number) => {
@@ -64,7 +73,7 @@ const UserTable = () => {
     <div>
       <div>
         {isOpen && (
-          <Modal title="Edit User" setIsOpen={setIsOpen} onSave={handleSaveUser} />
+          <Modal title="Edit User" setIsOpen={setIsOpen} />
         )}
       </div>
 
@@ -88,7 +97,10 @@ const UserTable = () => {
             <tr key={user.id}>
               <td className="px-4 py-2">{index + 1}</td>
               <td className="px-4 py-2">
-                <img src={user.imgUrl} className="w-10 h-10 rounded-full" />
+                <Image width={200} 
+                height={200}
+                src={user.imgUrl || "/default-avatar.png"}
+                alt="Profil" className="w-10 h-10 rounded-full" />
               </td>
               <td className="px-4 py-2">{user.id}</td>
               <td className="px-4 py-2">{user.userName}</td>
