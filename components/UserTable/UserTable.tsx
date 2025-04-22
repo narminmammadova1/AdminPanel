@@ -7,9 +7,10 @@ import Button from "../Button/Button";
 import useModal from "@/hooks/useModal";
 import Modal from "../Modal/modal";
 import Image from "next/image";
+import Header from "../Header/Header";
 
-type UserProps = {
-  id: number;
+export type UserProps = {
+  id: number | string |null ;
   userName: string;
   firstName: string;
   lastName: string;
@@ -24,22 +25,39 @@ const UserTable = () => {
   const [users, setUsers] = useState<UserProps[]>([]);
   const { isOpen, setIsOpen } = useModal();
   const [isEdit, setIsEdit] = useState(false);
+const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
 
-  const handleOpenEditModal = () => {
-    setIsOpen(true);
-    setIsEdit(true);
-    localStorage.setItem("isEdit", "true");
-    console.log("isedit",isEdit);
-    
+  //userAdd and userEdit functions
+  const handleUserAdded = () => {
+    const raw = localStorage.getItem("usersData");
+    const data = raw ? JSON.parse(raw) : [];
+    setUsers(data);
   };
 
-
-
-  const handleDelete = (id: number) => {
+  
+  
+//for delete users
+  const handleDelete = (id: number | string |null ) => {
     const updated = users.filter((user) => user.id !== id);
     setUsers(updated);
     localStorage.setItem("usersData", JSON.stringify(updated));
   };
+
+  const getColorByExpiration = (dateString: string): string => {
+    const now = new Date();
+    const expirationDate = new Date(dateString);
+    const timeDiff = expirationDate.getTime() - now.getTime();
+    const daysRemaining = timeDiff / (1000 * 60 * 60 * 24);
+  
+    if (daysRemaining < 0) {
+      return "bg-red-300"; 
+    } else if (daysRemaining <= 3) {
+      return "bg-yellow-300"; 
+    } else {
+      return "bg-green-300"; 
+    }
+  };
+  
 
 
 
@@ -50,18 +68,18 @@ const UserTable = () => {
       if (!storedUsers) {
         localStorage.setItem("usersData", JSON.stringify(defaultUsers));
         setUsers(defaultUsers);
-      } else {
+      } 
+      else {
         const parsed = JSON.parse(storedUsers);
         if (Array.isArray(parsed)) {
           setUsers(parsed);
         } else {
-          console.warn("usersData is not an array, resetting to defaultUsers");
+          console.warn("usersData is not an array");
           localStorage.setItem("usersData", JSON.stringify(defaultUsers));
           setUsers(defaultUsers);
         }
       }
     } catch (error) {
-      console.error("Error parsing usersData, resetting:", error);
       localStorage.setItem("usersData", JSON.stringify(defaultUsers));
       setUsers(defaultUsers);
     }
@@ -71,16 +89,21 @@ const UserTable = () => {
 
   return (
     <div>
+              <Header title="Users" buttonTitle="+add user" onAdded={handleUserAdded}/>
+
       <div>
         {isOpen && (
-          <Modal title="Edit User" setIsOpen={setIsOpen} />
+          <Modal 
+          selectedUser={selectedUser}
+          setIsOpen={setIsOpen} 
+            onUserAdded={handleUserAdded} title="Edit User" />
         )}
       </div>
 
-      <table className="text-white">
+      <table className="text-white text-[14px]">
         <thead>
           <tr>
-            <td className="px-4 py-2">N</td>
+            <td className="px-4 py-2">No</td>
             <th className="px-4 py-2">Image</th>
             <th className="px-4 py-2">ID</th>
             <th className="px-4 py-2">Username</th>
@@ -99,7 +122,7 @@ const UserTable = () => {
               <td className="px-4 py-2">
                 <Image width={200} 
                 height={200}
-                src={user.imgUrl || "/default-avatar.png"}
+                src={user.imgUrl || "/avatar.svg"}
                 alt="Profil" className="w-10 h-10 rounded-full" />
               </td>
               <td className="px-4 py-2">{user.id}</td>
@@ -108,16 +131,22 @@ const UserTable = () => {
               <td className="px-4 py-2">{user.lastName}</td>
               <td className="px-4 py-2">{user.balance}</td>
               <td className="px-4 py-2">
-                <div className="bg-red-700 py-1">{user.audioAccess}</div>
+                <div  className={`${getColorByExpiration(user.audioAccess)} py-1 px-2 rounded`}>{user.audioAccess}</div>
               </td>
               <td className="px-4 py-2">
-                <div className="bg-yellow-500 py-1">{user.videoAccess}</div>
+                <div  className={`${getColorByExpiration(user.videoAccess)} py-1 px-2 rounded`}>{user.videoAccess}</div>
+              </td>
+              <td className="px-4 flex gap-2 py-2">
+                <Button onClick={() => {
+    setSelectedUser(user);    
+    setIsEdit(true);          
+    localStorage.setItem("isEdit", "true");
+    setIsOpen(true);  
+  }} buttonTitle="Edit" />
+                <Button onClick={() => handleDelete(user?.id)}  buttonTitle="Del" />
+
               </td>
               <td className="px-4 py-2">
-                <Button onClick={handleOpenEditModal} title="Edit" />
-              </td>
-              <td className="px-4 py-2">
-                <Button onClick={() => handleDelete(user.id)} title="Delete" />
               </td>
             </tr>
           ))}

@@ -1,0 +1,19 @@
+
+[{
+    "id": 1,
+  "type": "audio",
+  "category": "music",
+  "title": "Track 1",
+  "description": "This is a description of the audio track.",
+  "duration": 300,
+  "imageUrl": "https://example.com/default-image.jpg"
+},
+{
+    "id": 2,
+  "type": "audio",
+  "category": "music",
+  "title": "Track 2",
+  "description": "This is a description of the audio track.",
+  "duration": 300,
+  "imageUrl": "https://example.com/default-image.jpg"
+}]

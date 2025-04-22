@@ -1,13 +1,22 @@
-// app/admin/audio/page.tsx
-import React from 'react';
+import AudioTable from "@/components/AudioTable/AudioTable";
+import Header from "@/components/Header/Header";
+import UserTable from "@/components/UserTable/UserTable";
 
 const AudioPage = () => {
-  return (
-    <div>
-      <h1>Аудиофайлы (Audio Files)</h1>
-      <p>Here you can manage audio files.</p>
-    </div>
-  );
-};
 
-export default AudioPage;
+
+
+
+    return (
+      <div className=" text-center ">
+     
+        <section>
+           
+            <AudioTable/>
+        </section>
+      </div>
+    );
+  };
+  
+  export default AudioPage;
+  

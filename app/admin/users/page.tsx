@@ -9,7 +9,7 @@ const UsersPage = () => {
     return (
       <div className=" text-center ">
      
-        <Header/>
+        {/* <Header/> */}
         <section>
            
             <UserTable/>
