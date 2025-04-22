@@ -48,7 +48,7 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAudioAdded,selectedAudio}: Mod
     duration: "",
   };
 
-  let savedEdit=localStorage.getItem("isEdit")
+  const savedEdit=localStorage.getItem("isEdit")
 
   const formInitialValues= savedEdit && selectedAudio ? (
     {  type:selectedAudio.type,
