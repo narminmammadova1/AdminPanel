@@ -3,13 +3,10 @@
 
 import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
-// import useModal from "@/hooks/useModal";
-// import Modal from "../Modal/modal";
 import Image from "next/image";
 import Header from "../Header/Header";
 import defaulAudios from "@/data/audios.json"
 import useModal from "@/hooks/useModal";
-import Modal from "../Modal/modal";
 import AudioModal from "../Modal/audioModal";
 
 
@@ -129,6 +126,8 @@ else{
  onClick={()=>{
   setSelectedAudio(audio)
   setIsEdit(true)
+  console.log(isEdit);
+  
   localStorage.setItem("isEdit", "true");
   setIsOpenAudioMdl(true);  
  }}            

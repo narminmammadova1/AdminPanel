@@ -47,7 +47,7 @@ const Modal = ({ setIsOpen, title,onUserAdded ,selectedUser}: ModalProps) => {
   };
 
 
-let savedEdit=localStorage.getItem("isEdit")
+const savedEdit=localStorage.getItem("isEdit")
 
 const defaultValues = {
   userName: "",

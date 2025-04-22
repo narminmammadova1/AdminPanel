@@ -82,6 +82,8 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
     } catch (error) {
       localStorage.setItem("usersData", JSON.stringify(defaultUsers));
       setUsers(defaultUsers);
+      console.log(error);
+      
     }
   }, []);
 
@@ -141,6 +143,8 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
     setSelectedUser(user);    
     setIsEdit(true);          
     localStorage.setItem("isEdit", "true");
+    console.log(isEdit);
+    
     setIsOpen(true);  
   }} buttonTitle="Edit" />
                 <Button onClick={() => handleDelete(user?.id)}  buttonTitle="Del" />

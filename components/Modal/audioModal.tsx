@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
 
 const AudioModal = ({ setIsOpenAudioMdl, title ,onAudioAdded,selectedAudio}: ModalProps) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [audioFileBase64, setAudioFileBase64] = useState<string | null>(null);
+  // const [audioFileBase64, setAudioFileBase64] = useState<string | null>(null);
 
   const handleCloseModal = () => {
     setIsOpenAudioMdl(false);
