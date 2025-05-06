@@ -1,4 +1,3 @@
-import AudioTable from "@/components/AudioTable/AudioTable";
 import VideoTable from "@/components/VideoTable/VideoTable";
 
 const VideoPage = () => {

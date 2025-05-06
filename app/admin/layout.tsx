@@ -1,7 +1,13 @@
 // app/admin/layout.tsx
 import Link from 'next/link';
+import { ReactNode } from 'react';
 
-const AdminLayout = ({ children }: { children: React.ReactNode }) => {
+
+interface AdminLayoutProps {
+  children: ReactNode;
+}
+
+const AdminLayout = ({ children }:AdminLayoutProps) => {
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
