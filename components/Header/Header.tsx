@@ -6,6 +6,7 @@ import Modal from '../Modal/modal'
 import useModal from '@/hooks/useModal'
 import AudioModal from '../Modal/audioModal'
 import { usePathname } from 'next/navigation'
+import VideoModal from '../Modal/videoModal'
 
 
 type HeaderProps={
@@ -15,7 +16,7 @@ type HeaderProps={
 }
 
 const Header = ({onAdded,title,buttonTitle}:HeaderProps) => {
-const {isOpen,setIsOpen,isOpenAudioMdl,setIsOpenAudioMdl}=useModal()
+const {isOpen,setIsOpen,isOpenAudioMdl,setIsOpenAudioMdl,isOpenVideoMdl,setIsOpenVideoMdl}=useModal()
 const pathName=usePathname()
 const handleOpenUserModal=()=>{
   if(pathName==="/admin/users"){
@@ -23,6 +24,9 @@ const handleOpenUserModal=()=>{
 
   }else if(pathName==="/admin/audio"){
     setIsOpenAudioMdl(true)
+  }
+  else if (pathName==="/admin/video"){
+    setIsOpenVideoMdl(true)
   }
 }
 
@@ -32,7 +36,9 @@ const handleOpenUserModal=()=>{
         <div>
   {isOpen &&( <Modal onUserAdded={onAdded} title="Add User" setIsOpen={setIsOpen} />)}     
   {isOpenAudioMdl &&( <AudioModal 
-   title="Add Audio" onAudioAdded={onAdded} setIsOpenAudioMdl={setIsOpenAudioMdl} />)}     
+   title="Add Audio" onAdded={onAdded} setIsOpenAudioMdl={setIsOpenAudioMdl} />)}     
+ {isOpenVideoMdl &&( <VideoModal 
+   title="Add Video" onAdded={onAdded} setIsOpenVideoMdl={setIsOpenVideoMdl} />)}     
 
         </div>
 

@@ -1,16 +1,15 @@
 
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import Image from "next/image";
 import Header from "../Header/Header";
-import defaulAudios from "@/data/audios.json"
+import defaultVideos from "@/data/videos.json"
 import useModal from "@/hooks/useModal";
-import AudioModal from "../Modal/audioModal";
+import VideoModal from "../Modal/videoModal";
 
 
-export type AudioProps={
+export type VideoProps={
   id: string |number |null;
   type:string;
   category:string;
@@ -21,51 +20,51 @@ imgUrl?: string
 
 }
 
-const AudioTable = () => {
-  const [audioFiles,setAudioFiles]=useState<AudioProps[]>([])
-const [selectedAudio,setSelectedAudio]=useState<AudioProps | null>(null)
+const VideoTable = () => {
+  const [videoFiles,setVideoFiles]=useState<VideoProps[]>([])
+const [selectedVideo,setSelectedVideo]=useState<VideoProps | null>(null)
   const [isEdit,setIsEdit]=useState(false)
-  const {isOpenAudioMdl,setIsOpenAudioMdl}=useModal()
+  const {setIsOpenVideoMdl,isOpenVideoMdl}=useModal()
 
   
-  const handleAudioAdded = () => {
-    const raw = localStorage.getItem("audioData");
+  const handleVideoAdded = () => {
+    const raw = localStorage.getItem("videoData");
     const data = raw ? JSON.parse(raw) : [];
-    setAudioFiles(data);
+    setVideoFiles(data);
   };
 
 
-  const handlelAudioDelete=(id:string |number |null)=>{
-    const updated=audioFiles.filter((audio)=>audio.id !==id)
-    setAudioFiles(updated)
-    localStorage.setItem("audioData",JSON.stringify(updated))
+  const handleVideoDelete=(id:string |number |null)=>{
+    const updated=videoFiles.filter((video)=>video.id !==id)
+    setVideoFiles(updated)
+    localStorage.setItem("videoData",JSON.stringify(updated))
   }
 
   
   useEffect(() => {
 
 try{
-const storedAudios=localStorage.getItem("audioData")
-if(!storedAudios){
-  localStorage.setItem("audioData",JSON.stringify(defaulAudios))
+const storedvideos=localStorage.getItem("videoData")
+if(!storedvideos){
+  localStorage.setItem("videoData",JSON.stringify(defaultVideos))
 }
 else{
-  const parsed=JSON.parse(storedAudios)
+  const parsed=JSON.parse(storedvideos)
 if(Array.isArray(parsed)){
-  setAudioFiles(parsed)
+  setVideoFiles(parsed)
   
 }
 else{
-  localStorage.setItem("audioData",JSON.stringify(defaulAudios))
-  setAudioFiles(defaulAudios)
+  localStorage.setItem("videoData",JSON.stringify(defaultVideos))
+  setVideoFiles(defaultVideos)
 
 }
 }
 
 }catch(error){
   console.log(error);
-  localStorage.setItem("audioData",JSON.stringify(defaulAudios))
-  setAudioFiles(defaulAudios)
+  localStorage.setItem("videoData",JSON.stringify(defaultVideos))
+  setVideoFiles(defaultVideos)
 
   
 }
@@ -77,11 +76,11 @@ else{
 
   return (
     <div>
-              <Header onAdded={handleAudioAdded} title="Audios" buttonTitle="+add Audio" />
+              <Header onAdded={handleVideoAdded} title="Videos" buttonTitle="+add Video" />
 
       <div>
-      {isOpenAudioMdl &&( <AudioModal selectedData={selectedAudio} onAdded={handleAudioAdded}
-   title="Edit Audio File" setIsOpenAudioMdl={setIsOpenAudioMdl} />)} 
+      {isOpenVideoMdl &&( <VideoModal selectedData={selectedVideo} onAdded={handleVideoAdded}
+   title="Edit Video File" setIsOpenVideoMdl={setIsOpenVideoMdl} />)} 
       </div>
 
       <table className="text-white text-[14px]">
@@ -102,23 +101,24 @@ else{
           </tr>
         </thead>
         <tbody>
-         {audioFiles.map((audio,index)=>(
-  <tr key={audio.id}>
+         {videoFiles.map((video,index)=>(
+  <tr key={video.id}>
   <td className="px-4 py-2">{index+1}</td>
   <td className="px-4 py-2">
     <Image width={200} 
     height={200}
     // src={user.imgUrl || "/avatar.svg"}
-    src={audio.imgUrl ? audio.imgUrl : "/avatar.png"}
+    src={video.imgUrl ? video.imgUrl : "/avatar.png"}
+
     alt="Profil" className="w-10 h-10 rounded-full" />
   </td>
-  <td className="px-4 py-2">{audio.id}</td>
-  <td className="px-4 py-2">{audio.type}</td>
-  <td className="px-4 py-2">{audio.category}</td>
-  <td className="px-4 py-2">{audio.title}</td>
-  <td className="px-4 py-2">{audio.description}</td>
+  <td className="px-4 py-2">{video.id}</td>
+  <td className="px-4 py-2">{video.type}</td>
+  <td className="px-4 py-2">{video.category}</td>
+  <td className="px-4 py-2">{video.title}</td>
+  <td className="px-4 py-2">{video.description}</td>
   <td className="px-4 py-2">
- {audio.duration}
+ {video.duration}
   </td>
   {/* <td className="px-4 py-2">
    
@@ -126,16 +126,16 @@ else{
   <td className="px-4 flex gap-2 py-2">
     <Button
  onClick={()=>{
-  setSelectedAudio(audio)
+  setSelectedVideo(video)
   setIsEdit(true)
   console.log(isEdit);
   
   localStorage.setItem("isEdit", "true");
-  setIsOpenAudioMdl(true);  
- }}            
+  setIsOpenVideoMdl(true);  
+ }}
 buttonTitle="Edit" />
     <Button onClick={()=>{
-      handlelAudioDelete(audio.id)
+      handleVideoDelete(video.id)
     }}  buttonTitle="Del" />
 
   </td>
@@ -151,4 +151,4 @@ buttonTitle="Edit" />
   );
 };
 
-export default AudioTable;
+export default VideoTable;

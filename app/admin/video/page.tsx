@@ -1,13 +1,18 @@
-// app/admin/audio/page.tsx
-import React from 'react';
+import AudioTable from "@/components/AudioTable/AudioTable";
+import VideoTable from "@/components/VideoTable/VideoTable";
 
 const VideoPage = () => {
-  return (
-    <div>
-      <h1>Bideофайлы (video Files)</h1>
-      <p>Here you can manage audio files.</p>
-    </div>
-  );
-};
 
-export default VideoPage;
+    return (
+      <div className=" text-center ">
+     
+        <section>
+           
+            <VideoTable/>
+        </section>
+      </div>
+    );
+  };
+  
+  export default VideoPage;
+  

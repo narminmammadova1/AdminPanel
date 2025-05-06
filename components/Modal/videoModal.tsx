@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import React, { useState } from "react";
@@ -10,7 +9,7 @@ import Image from "next/image";
 import { AudioProps } from "../AudioTable/AudioTable";
 
 type ModalProps = {
-  setIsOpenAudioMdl: (open: boolean) => void;
+  setIsOpenVideoMdl: (open: boolean) => void;
   title: string;
   onAdded:()=>void;
   selectedData?:AudioProps | null
@@ -24,35 +23,23 @@ const validationSchema = Yup.object().shape({
   duration: Yup.number().required("Duration is required").positive("Must be positive"),
 });
 
-const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProps) => {
-  
+const VideoModal = ({ setIsOpenVideoMdl, title ,onAdded,selectedData}: ModalProps) => {
   const [imgUrl, setImgUrl] = useState<string | null>(selectedData?.imgUrl || null);
 
   const handleCloseModal = () => {
-    setIsOpenAudioMdl(false);
+    setIsOpenVideoMdl(false);
   };
 
-  // const handleFileToBase64 = (file: File, callback: (base64: string) => void) => {
-  //   const reader = new FileReader();
-  //   reader.onloadend = () => {
-  //     callback(reader.result as string);
-  //   };
-  //   reader.readAsDataURL(file);
-  // };
-
-
-
-   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setImgUrl(reader.result as string);
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-  
+ const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+       const file = e.target.files?.[0];
+       if (file) {
+         const reader = new FileReader();
+         reader.onloadend = () => {
+           setImgUrl(reader.result as string);
+         };
+         reader.readAsDataURL(file);
+       }
+     };
   const defaultValues = {
     type: "",
     category: "",
@@ -79,20 +66,19 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
           initialValues={formInitialValues}
           validationSchema={validationSchema}
           onSubmit={(values) => {
-            const raw = localStorage.getItem("audioData");
+            const raw = localStorage.getItem("videoData");
             const parsed = raw ? JSON.parse(raw) : [];
 
             const id = Math.random().toString(36).substring(2, 8).toUpperCase();
 
-            const newAudio = {
+            const newVideo = {
               ...values,
               id,
               imgUrl: imgUrl,
-              // audioFile: audioFileBase64,
             };
 
-            const updatedAudioList = [...parsed, newAudio];
-            localStorage.setItem("audioData", JSON.stringify(updatedAudioList));
+            const updatedVideoList = [...parsed, newVideo];
+            localStorage.setItem("videoData", JSON.stringify(updatedVideoList));
             handleCloseModal();
             onAdded()
           }}
@@ -106,8 +92,7 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
   <input
     type="file"
     accept="image/*"
-    onChange={handleImageChange}
-    
+   onChange={handleImageChange}
     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
   />
 </label>
@@ -119,7 +104,7 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
   </div> */}
 
     <div className=" bg-amber-100 w-20 h-full rounded-md">
-      <Image src={imgUrl || "/avatar.png"} alt="" width={80} height={80} className="w-20 h-14 rounded-md" />
+      <Image src={imgUrl|| "/avatar.png"} alt="" width={80} height={80} className="w-20 h-14 rounded-md" />
    </div>
                
             </div>
@@ -137,7 +122,6 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
               <ErrorMessage name="type" component="div" className="text-red-500 text-sm" />
             </div>
 
-            {/* Category (dropdown) */}
             <div className="flex flex-col">
               <Field as="select" name="category" className="p-2 rounded-md border">
                 <option value="">Select Category</option>
@@ -174,4 +158,4 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
   );
 };
 
-export default AudioModal;
+export default VideoModal;

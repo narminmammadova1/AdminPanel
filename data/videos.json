@@ -1,0 +1,19 @@
+[{
+    "id": 1,
+    "type": "video",
+    "category": "movies",
+    "title": "Movie 1",
+    "description": "This is a description of the video.",
+    "duration": 1200,
+    "imageUrl": "https://example.com/default-image.jpg"}
+    ,
+{
+    
+"id": 2,
+"type": "video",
+"category": "movies",
+"title": "Movie 2",
+"description": "This is a description of the video.",
+"duration": 1200,
+"imageUrl": "https://example.com/default-image.jpg"
+}]
