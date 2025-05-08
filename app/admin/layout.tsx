@@ -1,7 +1,6 @@
 // app/admin/layout.tsx
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import { RxHamburgerMenu } from "react-icons/rx";
 
 
 interface AdminLayoutProps {

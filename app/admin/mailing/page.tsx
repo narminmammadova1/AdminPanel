@@ -1,4 +1,3 @@
-import Header from '@/components/Header/Header'
 import SendMail from '@/components/Mailing/sendMail'
 import React from 'react'
 

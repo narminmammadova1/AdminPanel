@@ -3,7 +3,6 @@
 import defaultUsers from "@/data/users.json"
 
 import React, { useEffect, useState } from "react";
-import Button from "../Button/Button";
 import useModal from "@/hooks/useModal";
 import Modal from "../Modal/modal";
 import Image from "next/image";
@@ -148,10 +147,10 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
     
     setIsOpen(true);  
   }}>
-    <FaPencil  size={18}/>
+    <FaPencil  color="green" size={18}/>
   </div>
                 <div onClick={() => handleDelete(user?.id)}  >
-                  <MdDeleteOutline  size={18}/>
+                  <MdDeleteOutline  color="red" size={18}/>
                 </div>
 
               </td>

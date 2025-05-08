@@ -1,7 +1,6 @@
 
 "use client";
 import React, { useEffect, useState } from "react";
-import Button from "../Button/Button";
 import Image from "next/image";
 import Header from "../Header/Header";
 import defaultVideos from "@/data/videos.json"
@@ -128,10 +127,10 @@ else{
   localStorage.setItem("isEdit", "true");
   setIsOpenVideoMdl(true);  
  }}
- > <FaPencil  size={18}/></div>
+ > <FaPencil  color="green" size={18}/></div>
     <div onClick={()=>{
       handleVideoDelete(video.id)
-    }} >  <MdDeleteOutline  size={20}/></div>
+    }} >  <MdDeleteOutline  color="red" size={20}/></div>
 
   </td>
   <td className="px-4 py-2">
