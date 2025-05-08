@@ -8,7 +8,7 @@ const UsersPage = () => {
     return (
       <div className=" text-center ">
      
-        <section>
+        <section className="px-4">
            
             <UserTable/>
         </section>

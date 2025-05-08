@@ -5,7 +5,7 @@ const VideoPage = () => {
     return (
       <div className=" text-center ">
      
-        <section>
+        <section className="px-4">
            
             <VideoTable/>
         </section>

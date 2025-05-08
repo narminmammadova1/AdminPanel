@@ -5,7 +5,7 @@ const AudioPage = () => {
     return (
       <div className=" text-center ">
      
-        <section>
+        <section className="px-4">
            
             <AudioTable/>
         </section>

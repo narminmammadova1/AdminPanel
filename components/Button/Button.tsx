@@ -5,7 +5,6 @@ import React from 'react'
 type ButtonProps={
     buttonTitle?:string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    // type?:string |undefined
    type?: "submit" | "reset" | "button" | undefined
 }
 
@@ -14,7 +13,7 @@ type ButtonProps={
 const Button = ({buttonTitle,onClick,type}:ButtonProps) => {
   return (
     <div>
-        <button  type={type} onClick={onClick} className=' px-4 py-2 w-full rounded-md text-white'>      {buttonTitle}
+        <button  type={type} onClick={onClick} className=' px-4 py-2 cursor-pointer w-full rounded-md text-white'>      {buttonTitle}
         </button>
     </div>
   )

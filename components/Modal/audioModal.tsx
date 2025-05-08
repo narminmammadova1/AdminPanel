@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import React, { useState } from "react";
@@ -31,16 +30,6 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
   const handleCloseModal = () => {
     setIsOpenAudioMdl(false);
   };
-
-  // const handleFileToBase64 = (file: File, callback: (base64: string) => void) => {
-  //   const reader = new FileReader();
-  //   reader.onloadend = () => {
-  //     callback(reader.result as string);
-  //   };
-  //   reader.readAsDataURL(file);
-  // };
-
-
 
    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
@@ -74,7 +63,7 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
 
   return (
     <div className="fixed top-0 left-0 w-screen h-screen bg-black/60 z-50 flex items-center justify-center">
-      <div className="w-1/2 bg-white p-6 rounded-lg shadow-lg">
+      <div className=" w-3/4 md:w-1/2 bg-white p-6 rounded-lg shadow-lg">
         <Formik
           initialValues={formInitialValues}
           validationSchema={validationSchema}
@@ -88,7 +77,6 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
               ...values,
               id,
               imgUrl: imgUrl,
-              // audioFile: audioFileBase64,
             };
 
             const updatedAudioList = [...parsed, newAudio];
@@ -101,7 +89,7 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
             <h3 className="text-black font-bold text-xl text-center">{title}</h3>            
             <div className="flex  justify-between  ">
                 <div className=" w-1/2 h-14 items-center justify-between flex  gap-4 ">
-                <label className="relative cursor-pointer w-1/2 h-8 bg-blue-500 text-white flex items-center justify-center rounded-md">
+                <label className="relative cursor-pointer md:w-1/2 h-8 text-[14px] md:text-base px-2 md:px-0 bg-blue-500 text-white flex items-center justify-center rounded-md">
   Add Image
   <input
     type="file"
@@ -114,11 +102,9 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
 
  </div>
 
- <div className="flex w-1/2 items-center  justify-between  gap-4">
-    {/* <div className="w-1/2">                {audioFileBase64 && <p className="text-green-500 text-sm mt-1">Audio uploaded ✅</p>}
-  </div> */}
-
-    <div className=" bg-amber-100 w-20 h-full rounded-md">
+ <div className="flex w-1/2 items-center  justify-end pe-2  gap-4">
+   
+    <div className="w-20 h-full rounded-md">
       <Image src={imgUrl || "/avatar.png"} alt="" width={80} height={80} className="w-20 h-14 rounded-md" />
    </div>
                
@@ -139,12 +125,27 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
 
             {/* Category (dropdown) */}
             <div className="flex flex-col">
-              <Field as="select" name="category" className="p-2 rounded-md border">
+              {/* <Field as="select" name="category" className="p-2 rounded-md border">
                 <option value="">Select Category</option>
                 <option value="music">Music</option>
                 <option value="podcast">Podcast</option>
                 <option value="asmr">ASMR</option>
-              </Field>
+              </Field> */}
+
+<Field
+  as="input"
+  list="categoryOptions"
+  name="category"
+  className="p-2 rounded-md border"
+  placeholder="Kategori girin veya seçin"
+/>
+<datalist id="categoryOptions">
+  <option value="music" />
+  <option value="podcast" />
+  <option value="asmr" />
+</datalist>
+<ErrorMessage name="category" component="div" className="text-red-500 text-sm" />
+
               <ErrorMessage name="category" component="div" className="text-red-500 text-sm" />
             </div>
 

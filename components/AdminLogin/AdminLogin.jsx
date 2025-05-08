@@ -4,12 +4,15 @@ import React from 'react'
  import Button from "../Button/Button"
  import { Formik, Form, Field, ErrorMessage } from 'formik';
  import * as Yup from 'yup';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
  
 const AdminLogin = () => {
-
+const router=useRouter()
+const {push}=router
     const initialValues={
-        username:"",
-        password:""
+        username:"admin@gmail.com",
+        password:"123456"
     }
 const validationSchema=Yup.object({
     username:Yup.string().required(" username required"),
@@ -18,6 +21,15 @@ const validationSchema=Yup.object({
 
 const handleSubmit=(values)=>{
     console.log("values",values);
+    if(values.username==="admin@gmail.com"  & values.password==="123456"){
+      toast.success("Welcome admin")
+
+      push("admin/users")
+
+    }
+    else {
+      alert("username must be admin1@gmail.com password must be 123456");
+    }
     
 }
 
@@ -29,11 +41,11 @@ const handleSubmit=(values)=>{
       onSubmit={handleSubmit}
       >
     
-      <Form className="  border-2 border-gray-500 w-1/2 rounded-md flex justify-center my-6 py-6 " action="">
+      <Form className="  border-2 border-gray-500 w-2/3 lg:w-1/2 rounded-md flex justify-center my-6 py-6 " action="">
       
       <div className=" flex flex-col w-full p-6 gap-4 justify-center ">
         <div className=" flex justify-center">
-        <h1 className="">Welcome to the Admin Panel</h1>
+        <h2 className=" ">Welcome to the Admin Panel</h2>
 
         </div>
 

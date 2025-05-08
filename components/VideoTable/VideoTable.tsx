@@ -7,7 +7,8 @@ import Header from "../Header/Header";
 import defaultVideos from "@/data/videos.json"
 import useModal from "@/hooks/useModal";
 import VideoModal from "../Modal/videoModal";
-
+import { FaPencil } from "react-icons/fa6";
+import { MdDeleteOutline } from "react-icons/md";
 
 export type VideoProps={
   id: string |number |null;
@@ -82,8 +83,8 @@ else{
       {isOpenVideoMdl &&( <VideoModal selectedData={selectedVideo} onAdded={handleVideoAdded}
    title="Edit Video File" setIsOpenVideoMdl={setIsOpenVideoMdl} />)} 
       </div>
-
-      <table className="text-white text-[14px]">
+<div className="overflow-x-auto  py-2  border-2 border-gray-500 md:border-none rounded-md  touch-auto w-full">
+<table className="text-white text-[14px]">
         <thead>
           <tr>
             <td className="px-4 py-2">No</td>
@@ -95,9 +96,6 @@ else{
             <th className="px-4 py-2">Description</th>
             <th className="px-4 py-2">Duration</th>
             <th className="px-4 py-2">Actions</th>
-
-            {/* <th className="px-4 py-2">Video Access</th>
-            <th className="px-4 py-2">Actions</th> */}
           </tr>
         </thead>
         <tbody>
@@ -107,24 +105,21 @@ else{
   <td className="px-4 py-2">
     <Image width={200} 
     height={200}
-    // src={user.imgUrl || "/avatar.svg"}
     src={video.imgUrl ? video.imgUrl : "/avatar.png"}
 
     alt="Profil" className="w-10 h-10 rounded-full" />
   </td>
   <td className="px-4 py-2">{video.id}</td>
-  <td className="px-4 py-2">{video.type}</td>
-  <td className="px-4 py-2">{video.category}</td>
-  <td className="px-4 py-2">{video.title}</td>
-  <td className="px-4 py-2">{video.description}</td>
+  <td className="px-4 py-2">{video.type.slice(0,10)}</td>
+  <td className="px-4 py-2">{video.category.slice(0,10)}</td>
+  <td className="px-4 py-2">{video.title.slice(0,15)}</td>
+  <td className="px-4 py-2">{video.description.slice(0,15)}</td>
   <td className="px-4 py-2">
  {video.duration}
   </td>
-  {/* <td className="px-4 py-2">
-   
-  </td> */}
-  <td className="px-4 flex gap-2 py-2">
-    <Button
+ 
+  <td className="px-4 flex gap-2 py-4">
+    <div
  onClick={()=>{
   setSelectedVideo(video)
   setIsEdit(true)
@@ -133,10 +128,10 @@ else{
   localStorage.setItem("isEdit", "true");
   setIsOpenVideoMdl(true);  
  }}
-buttonTitle="Edit" />
-    <Button onClick={()=>{
+ > <FaPencil  size={18}/></div>
+    <div onClick={()=>{
       handleVideoDelete(video.id)
-    }}  buttonTitle="Del" />
+    }} >  <MdDeleteOutline  size={20}/></div>
 
   </td>
   <td className="px-4 py-2">
@@ -147,6 +142,8 @@ buttonTitle="Edit" />
           
         </tbody>
       </table>
+</div>
+     
     </div>
   );
 };

@@ -74,7 +74,7 @@ const formInitialValues = savedEdit && selectedUser
   return (
     <div
      className="fixed top-0 left-0 w-screen h-screen bg-black/60 z-50 flex items-center justify-center">
-      <div className="w-1/2 flex justify-center bg-white p-6 rounded-lg shadow-lg">
+      <div className=" w-3/4 md:w-1/2 flex justify-center bg-white p-6 rounded-lg shadow-lg">
         <Formik
         
         initialValues={formInitialValues}

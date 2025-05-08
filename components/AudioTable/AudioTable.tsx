@@ -8,7 +8,8 @@ import Header from "../Header/Header";
 import defaulAudios from "@/data/audios.json"
 import useModal from "@/hooks/useModal";
 import AudioModal from "../Modal/audioModal";
-
+import { FaPencil } from "react-icons/fa6";
+import { MdDeleteOutline } from "react-icons/md";
 
 export type AudioProps={
   id: string |number |null;
@@ -73,8 +74,6 @@ else{
   }, []);
 
 
-
-
   return (
     <div>
               <Header onAdded={handleAudioAdded} title="Audios" buttonTitle="+add Audio" />
@@ -83,8 +82,8 @@ else{
       {isOpenAudioMdl &&( <AudioModal selectedData={selectedAudio} onAdded={handleAudioAdded}
    title="Edit Audio File" setIsOpenAudioMdl={setIsOpenAudioMdl} />)} 
       </div>
-
-      <table className="text-white text-[14px]">
+<div  className="overflow-x-auto  py-2  border-2 border-gray-500 md:border-none rounded-md  touch-auto w-full" >
+<table className="text-white text-[14px]">
         <thead>
           <tr>
             <td className="px-4 py-2">No</td>
@@ -96,9 +95,6 @@ else{
             <th className="px-4 py-2">Description</th>
             <th className="px-4 py-2">Duration</th>
             <th className="px-4 py-2">Actions</th>
-
-            {/* <th className="px-4 py-2">Video Access</th>
-            <th className="px-4 py-2">Actions</th> */}
           </tr>
         </thead>
         <tbody>
@@ -108,7 +104,6 @@ else{
   <td className="px-4 py-2">
     <Image width={200} 
     height={200}
-    // src={user.imgUrl || "/avatar.svg"}
     src={audio.imgUrl ? audio.imgUrl : "/avatar.png"}
     alt="Profil" className="w-10 h-10 rounded-full" />
   </td>
@@ -120,11 +115,9 @@ else{
   <td className="px-4 py-2">
  {audio.duration}
   </td>
-  {/* <td className="px-4 py-2">
-   
-  </td> */}
-  <td className="px-4 flex gap-2 py-2">
-    <Button
+ 
+  <td className="px-4 flex gap-2 py-4">
+    <div
  onClick={()=>{
   setSelectedAudio(audio)
   setIsEdit(true)
@@ -133,10 +126,10 @@ else{
   localStorage.setItem("isEdit", "true");
   setIsOpenAudioMdl(true);  
  }}            
-buttonTitle="Edit" />
-    <Button onClick={()=>{
+> <FaPencil  size={18}/></div>
+    <div onClick={()=>{
       handlelAudioDelete(audio.id)
-    }}  buttonTitle="Del" />
+    }}  ><MdDeleteOutline  size={20}/></div>
 
   </td>
   <td className="px-4 py-2">
@@ -147,6 +140,8 @@ buttonTitle="Edit" />
           
         </tbody>
       </table>
+</div>
+     
     </div>
   );
 };

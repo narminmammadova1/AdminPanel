@@ -8,6 +8,8 @@ import useModal from "@/hooks/useModal";
 import Modal from "../Modal/modal";
 import Image from "next/image";
 import Header from "../Header/Header";
+import { FaPencil } from "react-icons/fa6";
+import { MdDeleteOutline } from "react-icons/md";
 
 export type UserProps = {
   id: number | string |null ;
@@ -27,7 +29,6 @@ const UserTable = () => {
   const [isEdit, setIsEdit] = useState(false);
 const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
 
-  //userAdd and userEdit functions
   const handleUserAdded = () => {
     const raw = localStorage.getItem("usersData");
     const data = raw ? JSON.parse(raw) : [];
@@ -101,53 +102,57 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
             onUserAdded={handleUserAdded} title="Edit User" />
         )}
       </div>
-
-      <table className="text-white text-[14px]">
+<div  className="overflow-x-auto  py-2  border-2 border-gray-500 md:border-none rounded-md  touch-auto w-full">
+<table className="text-white   text-[12px] w-full  md:text-[14px]">
         <thead>
           <tr>
-            <td className="px-4 py-2">No</td>
-            <th className="px-4 py-2">Image</th>
-            <th className="px-4 py-2">ID</th>
-            <th className="px-4 py-2">Username</th>
-            <th className="px-4 py-2">First Name</th>
-            <th className="px-4 py-2">Last Name</th>
-            <th className="px-4 py-2">Balance</th>
-            <th className="px-4 py-2">Audio Access</th>
-            <th className="px-4 py-2">Video Access</th>
-            <th className="px-4 py-2">Actions</th>
+            <td className="md:px-4">No</td>
+            <th className="md:px-4 ">Image</th>
+            <th className="md:px-4 ">ID</th>
+            <th className="md:px-4 ">Username</th>
+            <th className="md:px-4 ">First Name</th>
+            <th className="md:px-4 ">Last Name</th>
+            <th className="md:px-4 ">Balance</th>
+            <th className="px-4 ">Audio Access</th>
+            <th className="px-4 ">Video Access</th>
+            <th className="md:px-4 ">Actions</th>
           </tr>
         </thead>
         <tbody>
           {users.map((user, index) => (
-            <tr key={user.id}>
-              <td className="px-4 py-2">{index + 1}</td>
-              <td className="px-4 py-2">
-                <Image width={200} 
-                height={200}
+            <tr className="  " key={user.id}>
+              <td className="px-2 ">{index + 1}</td>
+              <td className=" ">
+                <Image width={400} 
+                height={400}
                 src={user.imgUrl || "/avatar.svg"}
-                alt="Profil" className="w-10 h-10 rounded-full" />
+                alt="Profil" className=" w-10 h-10 rounded-full" />
               </td>
-              <td className="px-4 py-2">{user.id}</td>
-              <td className="px-4 py-2">{user.userName}</td>
-              <td className="px-4 py-2">{user.firstName}</td>
-              <td className="px-4 py-2">{user.lastName}</td>
-              <td className="px-4 py-2">{user.balance}</td>
-              <td className="px-4 py-2">
+              <td className="px-4 py-3 ">{user.id}</td>
+              <td className="px-4 py-3 ">{user.userName.slice(0,10)}</td>
+              <td className="px-4  py-3">{user.firstName.slice(0,10)}</td>
+              <td className="px-4 py-3">{user.lastName.slice(0,10)}</td>
+              <td className="px-4 py-3">{user.balance}</td>
+              <td className="px-2 py-3">
                 <div  className={`${getColorByExpiration(user.audioAccess)} py-1 px-2 rounded`}>{user.audioAccess}</div>
               </td>
-              <td className="px-4 py-2">
+              <td className="px-2 py-3 ">
                 <div  className={`${getColorByExpiration(user.videoAccess)} py-1 px-2 rounded`}>{user.videoAccess}</div>
               </td>
-              <td className="px-4 flex gap-2 py-2">
-                <Button onClick={() => {
+              <td className="px-2 flex gap-2  py-4 justify-center items-center">
+                <div  className=" " onClick={() => {
     setSelectedUser(user);    
     setIsEdit(true);          
     localStorage.setItem("isEdit", "true");
     console.log(isEdit);
     
     setIsOpen(true);  
-  }} buttonTitle="Edit" />
-                <Button onClick={() => handleDelete(user?.id)}  buttonTitle="Del" />
+  }}>
+    <FaPencil  size={18}/>
+  </div>
+                <div onClick={() => handleDelete(user?.id)}  >
+                  <MdDeleteOutline  size={18}/>
+                </div>
 
               </td>
               <td className="px-4 py-2">
@@ -156,6 +161,8 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
           ))}
         </tbody>
       </table>
+</div>
+     
     </div>
   );
 };
