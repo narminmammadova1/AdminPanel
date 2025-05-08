@@ -103,7 +103,7 @@ const VideoModal = ({ setIsOpenVideoMdl, title ,onAdded,selectedData}: ModalProp
  <div className="flex w-1/2 items-center   justify-end pe-2  gap-4">
    
 
-    <div className=" bg-amber-100 w-20 h-full rounded-md">
+    <div className=" w-20 h-full rounded-md">
       <Image src={imgUrl|| "/avatar.png"} alt="" width={80} height={80} className="w-20 h-14 rounded-md" />
    </div>
                

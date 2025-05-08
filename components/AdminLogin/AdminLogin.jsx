@@ -41,18 +41,18 @@ const handleSubmit=(values)=>{
       onSubmit={handleSubmit}
       >
     
-      <Form className="  border-2 border-gray-500 w-2/3 lg:w-1/2 rounded-md flex justify-center my-6 py-6 " action="">
+      <Form className="border-2 border-gray-500 w-2/3 lg:w-1/2 rounded-md flex justify-center my-6 py-6 " action="">
       
       <div className=" flex flex-col w-full p-6 gap-4 justify-center ">
         <div className=" flex justify-center">
-        <h2 className=" ">Welcome to the Admin Panel</h2>
+        <h3 className=" ">Welcome to the Admin Panel</h3>
 
         </div>
 
      
-      <Field name="username" className="h-10 rounded-md px-2 bg-white text-black " placeholder="username" type="text" />
+      <Field name="username" className="h-10 rounded-md px-2  text-[14px]  bg-white text-black " placeholder="username" type="text" />
       <ErrorMessage name="username" component="div" className="text-red-400 text-sm" />
-      <Field name="password" className="h-10 rounded-md px-2  text-black  bg-white"  placeholder="password" type="password" />
+      <Field name="password" className="h-10 rounded-md px-2   text-[14px]  text-black  bg-white"  placeholder="password" type="password" />
       <ErrorMessage name="password" component="div" className="text-red-400 text-sm" />
 
       <Button buttonTitle="Sign in" type='submit'/>

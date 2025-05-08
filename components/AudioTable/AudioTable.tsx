@@ -82,8 +82,8 @@ else{
    title="Edit Audio File" setIsOpenAudioMdl={setIsOpenAudioMdl} />)} 
       </div>
 <div  className="overflow-x-auto  py-2  border-2 border-gray-500 md:border-none rounded-md  touch-auto w-full" >
-<table className="text-white text-[14px]">
-        <thead>
+<table className="text-white text-[14px] w-full">
+        <thead className="text-green-500">
           <tr>
             <td className="px-4 py-2">No</td>
             <th className="px-4 py-2">Image</th>
@@ -104,13 +104,13 @@ else{
     <Image width={200} 
     height={200}
     src={audio.imgUrl ? audio.imgUrl : "/avatar.png"}
-    alt="Profil" className="w-10 h-10 rounded-full" />
+    alt="" className="w-10 h-10 rounded-full" />
   </td>
   <td className="px-4 py-2">{audio.id}</td>
   <td className="px-4 py-2">{audio.type}</td>
   <td className="px-4 py-2">{audio.category}</td>
   <td className="px-4 py-2">{audio.title}</td>
-  <td className="px-4 py-2">{audio.description}</td>
+  <td className="px-4 py-2">{audio.description.slice(0,21)}</td>
   <td className="px-4 py-2">
  {audio.duration}
   </td>

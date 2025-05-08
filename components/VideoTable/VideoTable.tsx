@@ -83,8 +83,8 @@ else{
    title="Edit Video File" setIsOpenVideoMdl={setIsOpenVideoMdl} />)} 
       </div>
 <div className="overflow-x-auto  py-2  border-2 border-gray-500 md:border-none rounded-md  touch-auto w-full">
-<table className="text-white text-[14px]">
-        <thead>
+<table className="text-white text-[14px] w-full">
+        <thead className=" text-green-500">
           <tr>
             <td className="px-4 py-2">No</td>
             <th className="px-4 py-2">Image</th>
@@ -106,13 +106,13 @@ else{
     height={200}
     src={video.imgUrl ? video.imgUrl : "/avatar.png"}
 
-    alt="Profil" className="w-10 h-10 rounded-full" />
+    alt="" className="w-10 h-10 rounded-full" />
   </td>
   <td className="px-4 py-2">{video.id}</td>
   <td className="px-4 py-2">{video.type.slice(0,10)}</td>
   <td className="px-4 py-2">{video.category.slice(0,10)}</td>
   <td className="px-4 py-2">{video.title.slice(0,15)}</td>
-  <td className="px-4 py-2">{video.description.slice(0,15)}</td>
+  <td className="px-4 py-2">{video.description.slice(0,21)}</td>
   <td className="px-4 py-2">
  {video.duration}
   </td>

@@ -50,11 +50,11 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
     const daysRemaining = timeDiff / (1000 * 60 * 60 * 24);
   
     if (daysRemaining < 0) {
-      return "bg-red-300"; 
+      return "bg-red-500"; 
     } else if (daysRemaining <= 3) {
-      return "bg-yellow-300"; 
+      return "bg-yellow-500"; 
     } else {
-      return "bg-green-300"; 
+      return "bg-green-500"; 
     }
   };
   
@@ -103,7 +103,7 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
       </div>
 <div  className="overflow-x-auto  py-2  border-2 border-gray-500 md:border-none rounded-md  touch-auto w-full">
 <table className="text-white   text-[12px] w-full  md:text-[14px]">
-        <thead>
+        <thead className="text-green-500">
           <tr>
             <td className="md:px-4">No</td>
             <th className="md:px-4 ">Image</th>
@@ -121,7 +121,7 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
           {users.map((user, index) => (
             <tr className="  " key={user.id}>
               <td className="px-2 ">{index + 1}</td>
-              <td className=" ">
+              <td className=" md:px-4">
                 <Image width={400} 
                 height={400}
                 src={user.imgUrl || "/avatar.svg"}
@@ -138,7 +138,7 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
               <td className="px-2 py-3 ">
                 <div  className={`${getColorByExpiration(user.videoAccess)} py-1 px-2 rounded`}>{user.videoAccess}</div>
               </td>
-              <td className="px-2 flex gap-2  py-4 justify-center items-center">
+              <td className="px-2 flex gap-2  py-6 justify-center items-center">
                 <div  className=" " onClick={() => {
     setSelectedUser(user);    
     setIsEdit(true);          
