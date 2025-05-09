@@ -58,7 +58,7 @@ const Header = ({ onAdded, title, buttonTitle }: HeaderProps) => {
             onClick={toggleSidebar}
           />
           <aside className="relative w-32 text-[12px] bg-gray-800 bg-opacity-90 py-10 text-white shadow-md">
-            <nav className="space-y-4 mt-6 text-start px-4">
+            <nav className="space-y-4 mt-6 flex flex-col text-start px-4">
               <Link href="/admin/users" className="  hover:scale-110 hover:text-yellow-400" onClick={toggleSidebar}>Users</Link>
               <Link href="/admin/audio" className="  hover:scale-110 hover:text-yellow-400" onClick={toggleSidebar}>AudioFile</Link>
               <Link href="/admin/video" className="  hover:scale-110 hover:text-yellow-400" onClick={toggleSidebar}>VideoFile</Link>
