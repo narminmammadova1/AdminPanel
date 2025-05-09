@@ -160,14 +160,22 @@ const raw = localStorage.getItem("usersData");
             </div>
 
             <div className="flex flex-col">
-              <Field type="date" name="audioAccess" className="p-2 rounded-md border" />
+              <div className="flex justify-between items-center">
+                <label className="" htmlFor="audioAccess">Audio Access</label>
+                <Field type="date" name="audioAccess" className="p-2 rounded-md  md:w-2/3 border" />
+
+              </div>
               <div className="h-2 mt-0">
                 <ErrorMessage name="audioAccess" component="div" className="text-red-500 text-sm" />
               </div>
             </div>
 
             <div className="flex flex-col">
-              <Field type="date" name="videoAccess" className="p-2 rounded-md border" />
+              <div className="flex justify-between items-center ">
+              <label htmlFor="videoAccess">Video Access</label>
+              <Field  type="date" name="videoAccess" className="p-2 md:w-2/3 rounded-md border" />
+              </div>
+             
               <div className="h-2 mt-0">
                 <ErrorMessage name="videoAccess" component="div" className="text-red-500 text-sm" />
               </div>

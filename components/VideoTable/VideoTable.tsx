@@ -101,10 +101,10 @@ else{
          {videoFiles.map((video,index)=>(
   <tr key={video.id}>
   <td className="px-4 py-2">{index+1}</td>
-  <td className="px-4 py-2">
+  <td className="ps-4 md:ps-8 py-2">
     <Image width={200} 
     height={200}
-    src={video.imgUrl ? video.imgUrl : "/avatar.png"}
+    src={video.imgUrl ? video.imgUrl :"/avatar.png"}
 
     alt="" className="w-10 h-10 rounded-full" />
   </td>
@@ -117,8 +117,8 @@ else{
  {video.duration}
   </td>
  
-  <td className="px-4 flex gap-2 py-4">
-    <div
+  <td className=" ps-4 md:ps-10 flex gap-2 py-4">
+    <div className="  hover:scale-120" 
  onClick={()=>{
   setSelectedVideo(video)
   setIsEdit(true)
@@ -128,7 +128,7 @@ else{
   setIsOpenVideoMdl(true);  
  }}
  > <FaPencil  color="green" size={18}/></div>
-    <div onClick={()=>{
+    <div className="  hover:scale-120" onClick={()=>{
       handleVideoDelete(video.id)
     }} >  <MdDeleteOutline  color="red" size={20}/></div>
 

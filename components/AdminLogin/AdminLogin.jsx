@@ -19,12 +19,12 @@ const validationSchema=Yup.object({
     password:Yup.string().required("password required") .min(6,'at least 6 sembols'),
 })
 
-const handleSubmit=(values)=>{
-    console.log("values",values);
-    if(values.username==="admin@gmail.com"  & values.password==="123456"){
-      toast.success("Welcome admin")
+const handleSubmit= async(values)=>{
+    if(values.username==="admin@gmail.com"  && values.password==="123456"){
 
-      push("admin/users")
+      toast.success("Welcome admin")
+      await push("admin/users").then
+
 
     }
     else {

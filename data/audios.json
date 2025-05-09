@@ -6,7 +6,7 @@
   "title": "Track 1",
   "description": "This is a description of the audio track.",
   "duration": 300,
-  "imageUrl": "https://example.com/default-image.jpg"
+  "imgUrl": "https://images.unsplash.com/photo-1511376777868-611b54f68947"
 },
 {
     "id": 2,
@@ -15,5 +15,5 @@
   "title": "Track 2",
   "description": "This is a description of the audio track.",
   "duration": 300,
-  "imageUrl": "https://example.com/default-image.jpg"
+  "imgUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4"
 }]

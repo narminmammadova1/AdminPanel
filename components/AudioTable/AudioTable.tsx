@@ -116,17 +116,16 @@ else{
   </td>
  
   <td className="px-4 flex gap-2 py-4">
-    <div
+    <div className=" hover:scale-120"
  onClick={()=>{
   setSelectedAudio(audio)
   setIsEdit(true)
-  console.log(isEdit);
   
   localStorage.setItem("isEdit", "true");
   setIsOpenAudioMdl(true);  
  }}            
 > <FaPencil color="green" size={18}/></div>
-    <div onClick={()=>{
+    <div className=" hover:scale-120" onClick={()=>{
       handlelAudioDelete(audio.id)
     }}  ><MdDeleteOutline color="red"  size={20}/></div>
 

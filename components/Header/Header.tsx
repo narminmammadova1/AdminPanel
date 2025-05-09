@@ -59,11 +59,11 @@ const Header = ({ onAdded, title, buttonTitle }: HeaderProps) => {
           />
           <aside className="relative w-32 text-[12px] bg-gray-800 bg-opacity-90 py-10 text-white shadow-md">
             <nav className="space-y-4 mt-6 text-start px-4">
-              <Link href="/admin/users" className="block hover:text-yellow-400" onClick={toggleSidebar}>Users</Link>
-              <Link href="/admin/audio" className="block hover:text-yellow-400" onClick={toggleSidebar}>AudioFile</Link>
-              <Link href="/admin/video" className="block hover:text-yellow-400" onClick={toggleSidebar}>VideoFile</Link>
-              <Link href="/admin/mailing" className="block hover:text-yellow-400" onClick={toggleSidebar}>Connection</Link>
-              <Link href="/" className="block hover:text-yellow-400" onClick={toggleSidebar}>Log out</Link>
+              <Link href="/admin/users" className="  hover:scale-110 hover:text-yellow-400" onClick={toggleSidebar}>Users</Link>
+              <Link href="/admin/audio" className="  hover:scale-110 hover:text-yellow-400" onClick={toggleSidebar}>AudioFile</Link>
+              <Link href="/admin/video" className="  hover:scale-110 hover:text-yellow-400" onClick={toggleSidebar}>VideoFile</Link>
+              <Link href="/admin/mailing" className=" hover:scale-110 hover:text-yellow-400" onClick={toggleSidebar}>Connection</Link>
+              <Link href="/" className=" hover:scale-110 hover:text-yellow-400" onClick={toggleSidebar}>Log out</Link>
             </nav>
           </aside>
         </div>

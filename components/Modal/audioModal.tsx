@@ -114,12 +114,19 @@ const AudioModal = ({ setIsOpenAudioMdl, title ,onAdded,selectedData}: ModalProp
             </div>
             
             <div className="flex flex-col">
-              <Field as="select" name="type" className="p-2 rounded-md border">
+              <Field as="input" name="type" 
+               list="typeOptions"
+               className="p-2 rounded-md border"
+               placeholder="type"
+              />
+                <datalist id="typeOptions">
                 <option value="">Select Type</option>
                 <option value="meditation">Meditation</option>
                 <option value="sleep">Sleep</option>
                 <option value="focus">Focus</option>
-              </Field>
+                </datalist>
+              
+             
               <ErrorMessage name="type" component="div" className="text-red-500 text-sm" />
             </div>
 

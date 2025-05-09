@@ -13,7 +13,7 @@ type ButtonProps={
 const Button = ({buttonTitle,onClick,type}:ButtonProps) => {
   return (
     <div>
-        <button  type={type} onClick={onClick} className=' px-4 py-2 cursor-pointer w-full rounded-md text-white'>      {buttonTitle}
+        <button  type={type} onClick={onClick} className=' hover:scale-102 px-4 py-2 cursor-pointer w-full rounded-md text-white'>      {buttonTitle}
         </button>
     </div>
   )

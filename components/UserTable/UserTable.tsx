@@ -74,7 +74,6 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
         if (Array.isArray(parsed)) {
           setUsers(parsed);
         } else {
-          console.warn("usersData is not an array");
           localStorage.setItem("usersData", JSON.stringify(defaultUsers));
           setUsers(defaultUsers);
         }
@@ -139,18 +138,17 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
                 <div  className={`${getColorByExpiration(user.videoAccess)} py-1 px-2 rounded`}>{user.videoAccess}</div>
               </td>
               <td className="px-2 flex gap-2  py-6 justify-center items-center">
-                <div  className=" " onClick={() => {
+                <div  className=" hover:scale-120 " onClick={() => {
     setSelectedUser(user);    
     setIsEdit(true);          
     localStorage.setItem("isEdit", "true");
-    console.log(isEdit);
     
     setIsOpen(true);  
   }}>
     <FaPencil  color="green" size={18}/>
   </div>
-                <div onClick={() => handleDelete(user?.id)}  >
-                  <MdDeleteOutline  color="red" size={18}/>
+                <div className=" hover:scale-120" onClick={() => handleDelete(user?.id)}  >
+                  <MdDeleteOutline  color="red" size={20}/>
                 </div>
 
               </td>
