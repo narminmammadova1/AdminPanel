@@ -120,6 +120,7 @@ else{
  onClick={()=>{
   setSelectedAudio(audio)
   setIsEdit(true)
+  console.log(isEdit);
   
   localStorage.setItem("isEdit", "true");
   setIsOpenAudioMdl(true);  

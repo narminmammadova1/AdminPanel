@@ -142,6 +142,7 @@ const [selectedUser,setSelectedUser]=useState<UserProps | null>(null);
     setSelectedUser(user);    
     setIsEdit(true);          
     localStorage.setItem("isEdit", "true");
+    console.log(isEdit);
     
     setIsOpen(true);  
   }}>
